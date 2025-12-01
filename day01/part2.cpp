@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void solve_pass(vector<string>& rotations) {
+void solve_pass(const vector<string>& rotations) {
     int pos = 50;
     int ans = 0;
     int last = pos;
