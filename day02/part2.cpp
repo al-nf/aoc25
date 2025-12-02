@@ -3,20 +3,36 @@
 #include <vector>
 #include <string>
 #include <cmath>
+#include <algorithm>
 using namespace std;
 
 bool invalid(long n) {
-    int dig = log10(n)+1;
-    if (dig % 2 == 1) {
-        return false;
+    string s = to_string(n);
+    int len = s.length();
+    
+    for (int pattern_len = 1; pattern_len <= len / 2; ++pattern_len) {
+        if (len % pattern_len != 0) {
+            continue;
+        }
+        
+        string pattern = s.substr(0, pattern_len);
+        
+        bool matches = true;
+        for (int i = pattern_len; i < len; i += pattern_len) {
+            if (s.substr(i, pattern_len) != pattern) {
+                matches = false;
+                break;
+            }
+        }
+        
+        if (matches) {
+            return true;
+        }
     }
     
-    int half = n / (pow(10, dig/2));
-    if ((half * (pow(10, dig/2)) + half) == n) {
-        return true;
-    }
     return false;
 }
+
 void sum(const vector<pair<long, long>>& ranges) {
     unsigned long long ans = 0;
     for (const auto& p : ranges) {
