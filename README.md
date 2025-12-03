@@ -3,5 +3,5 @@
 |Day|Time (ms)|Strategy|
 |---|---|---|
 |1|20 / 20|simulation|
-|2|60 / 90|math / brute force|
+|2|60 / 90|arithmetic / brute force|
 |3|20 / 20|greedy|
