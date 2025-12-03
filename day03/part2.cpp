@@ -8,7 +8,6 @@ void solve(const vector<vector<int>>& data) {
         vector<int> selected;
         int remaining = 12;
         
-        // sliding window! :3
         for (size_t i = 0; i < row.size() && remaining > 0; ++i) {
             int max_digit = -1;
             size_t max_pos = i;
