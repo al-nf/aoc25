@@ -5,3 +5,4 @@
 |1|20 / 20|simulation|
 |2|60 / 90|arithmetic / brute force|
 |3|20 / 20|greedy|
+|4|20 / 30|simulation|

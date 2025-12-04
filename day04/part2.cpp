@@ -5,7 +5,7 @@ bool accessible(const vector<vector<char>>& data, int x, int y) {
     int count = 0;
     for (int i = x-1; i <= x+1; ++i) {
         for (int j = y-1; j <= y+1; ++j) {
-            if (i >= 0 && j >= 0 && (i != x || j != y) && (i < (int)data.size() && j < (int)data[0].size())) {
+            if (i >= 0 && j >= 0 && (i != x || j != y) && (i < data.size() && j < data[0].size())) {
                 if (data[i][j] == '@') {
                     count++;
                 }
@@ -14,16 +14,23 @@ bool accessible(const vector<vector<char>>& data, int x, int y) {
     }
     return (count < 4);
 }
-void solve(const vector<vector<char>>& data) {
+void solve(vector<vector<char>>& data) {
     int sum = 0;
-    for (size_t i = 0; i < data.size(); ++i) {
-        for (size_t j = 0; j < data[0].size(); ++j) {
-            if (data[i][j] == '@' && accessible(data, i, j)) {
-                sum++;
+    while (true) {
+        int removed = 0;
+        for (size_t i = 0; i < data.size(); ++i) {
+            for (size_t j = 0; j < data[0].size(); ++j) {
+                if (data[i][j] == '@' && accessible(data, i, j)) {
+                    sum++; removed++;
+                    data[i][j] = 'x';
+                }
             }
         }
+        if (removed == 0) {
+            cout << sum << endl;
+            return;
+        }
     }
-    cout << sum << endl;
 }
 
 int main(int argc, char *argv[]) 
