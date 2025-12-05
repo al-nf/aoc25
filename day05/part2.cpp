@@ -3,15 +3,21 @@ using namespace std;
 
 typedef unsigned long long ull;
 
-void fresh(const vector<pair<ull,ull>>& ranges, const vector<ull>& fruit) {
-    int count = 0;
-    for (ull f : fruit) {
-        for (auto r : ranges) {
-            if (f >= r.first && f <= r.second) {
-                count++;
-                break;
-            }
+void fresh(vector<pair<ull,ull>> ranges) {
+    sort(ranges.begin(), ranges.end());
+    
+    vector<pair<ull,ull>> merged;
+    for (auto [start, end] : ranges) {
+        if (merged.empty() || merged.back().second < start - 1) {
+            merged.push_back({start, end});
+        } else {
+            merged.back().second = max(merged.back().second, end);
         }
+    }
+    
+    ull count = 0;
+    for (auto [start, end] : merged) {
+        count += (end - start + 1);
     }
     cout << count << endl;
 }
@@ -27,7 +33,6 @@ int main(int argc, char *argv[])
     }
 
     vector<pair<ull,ull>> ranges;
-    vector<ull> fruit;
 
     string line;
     while (getline(inputFile, line) && line != "") {
@@ -43,11 +48,6 @@ int main(int argc, char *argv[])
         }
         ranges.push_back({stoull(first), stoull(second)});
     }
-
-    while (getline(inputFile, line)) {
-        fruit.push_back(stoull(line));
-    }
-
-    fresh(ranges, fruit);
+    fresh(ranges);
 
 }
