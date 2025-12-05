@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -Wextra -O3 -std=c++20
+CFLAGS = -Wall -Wextra -O3
 
 PART1 = part1
 PART2 = part2
