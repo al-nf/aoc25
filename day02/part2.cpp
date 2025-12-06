@@ -45,7 +45,7 @@ void sum(const vector<pair<long, long>>& ranges) {
     cout << ans << endl;
 }
 
-int main(int argc, char *argv[]) 
+int main(int, char *argv[]) 
 {
     ifstream inputFile(argv[1]);
 

@@ -33,7 +33,7 @@ void solve(vector<vector<char>>& data) {
     }
 }
 
-int main(int argc, char *argv[]) 
+int main(int, char *argv[]) 
 {
     ifstream inputFile(argv[1]);
 

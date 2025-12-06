@@ -44,7 +44,7 @@ void solve_pass(const vector<string>& rotations) {
     cout << ans;
 }
 
-int main(int argc, char *argv[]) 
+int main(int, char *argv[]) 
 {
     ifstream inputFile(argv[1]);
     vector<string> data;

@@ -16,7 +16,7 @@ void fresh(const vector<pair<ull,ull>>& ranges, const vector<ull>& fruit) {
     cout << count << endl;
 }
 
-int main(int argc, char *argv[]) 
+int main(int, char *argv[]) 
 {
     ifstream inputFile(argv[1]);
 

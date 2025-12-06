@@ -26,7 +26,7 @@ void solve(const vector<vector<char>>& data) {
     cout << sum << endl;
 }
 
-int main(int argc, char *argv[]) 
+int main(int, char *argv[]) 
 {
     ifstream inputFile(argv[1]);
 

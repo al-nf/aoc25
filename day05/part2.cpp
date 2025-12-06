@@ -22,7 +22,7 @@ void fresh(vector<pair<ull,ull>> ranges) {
     cout << count << endl;
 }
 
-int main(int argc, char *argv[]) 
+int main(int, char *argv[]) 
 {
     ifstream inputFile(argv[1]);
 
