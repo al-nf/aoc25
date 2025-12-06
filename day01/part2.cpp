@@ -1,6 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -41,11 +39,12 @@ void solve_pass(const vector<string>& rotations) {
         last = pos;
         passed = false;
     }
-    cout << ans;
+    cout << ans << endl;
 }
 
 int main(int, char *argv[]) 
 {
+    auto start = chrono::high_resolution_clock::now();
     ifstream inputFile(argv[1]);
     vector<string> data;
 
@@ -62,4 +61,6 @@ int main(int, char *argv[])
     }
 
     solve_pass(data);
+    auto end = chrono::high_resolution_clock::now();
+    cout << "time: " << chrono::duration_cast<chrono::microseconds>(end-start).count() << "μs" << endl;
 }

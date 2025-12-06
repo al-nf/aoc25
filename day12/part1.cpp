@@ -38,27 +38,9 @@ int main(int, char *argv[])
         return 1;
     }
 
-    vector<vector<int>> nums;
-    vector<char> ops;
     string line;
     while (getline(inputFile, line)) {
-        if (!isalnum(line[0]) && line[0] != ' ') break;
-        vector<int> row;
-        stringstream ss(line);
-        int n;
-        while (ss >> n) {
-            row.push_back(n);
-        }
-        nums.push_back(row);
     }
-
-    stringstream ss(line);
-    char c;
-    while (ss >> c) {
-        ops.push_back(c);
-    }
-
-    solve(nums, ops);
     auto end = chrono::high_resolution_clock::now();
     cout << "time: " << chrono::duration_cast<chrono::microseconds>(end-start).count() << "μs" << endl;
 }

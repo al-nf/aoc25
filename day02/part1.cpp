@@ -1,8 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <string>
-#include <cmath>
+#include <bits/stdc++.h>
 using namespace std;
 
 bool invalid(long n) {
@@ -31,6 +27,7 @@ void sum(const vector<pair<long, long>>& ranges) {
 
 int main(int, char *argv[]) 
 {
+    auto startt = chrono::high_resolution_clock::now();
     ifstream inputFile(argv[1]);
 
     if (!inputFile) 
@@ -65,4 +62,6 @@ int main(int, char *argv[])
         }
     }
     sum(data);
+    auto endt = chrono::high_resolution_clock::now();
+    cout << "time: " << chrono::duration_cast<chrono::microseconds>(endt-startt).count() << "μs" << endl;
 }

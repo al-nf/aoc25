@@ -35,6 +35,7 @@ void solve(vector<vector<char>>& data) {
 
 int main(int, char *argv[]) 
 {
+    auto start = chrono::high_resolution_clock::now();
     ifstream inputFile(argv[1]);
 
     if (!inputFile) 
@@ -53,4 +54,6 @@ int main(int, char *argv[])
         data.push_back(row);
     }
     solve(data);
+    auto end = chrono::high_resolution_clock::now();
+    cout << "time: " << chrono::duration_cast<chrono::microseconds>(end-start).count() << "μs" << endl;
 }

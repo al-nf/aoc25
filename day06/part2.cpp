@@ -53,6 +53,8 @@ void solve(const vector<vector<char>>& digits, const vector<char>& ops) {
 
 int main(int, char *argv[]) 
 {
+    auto start = chrono::high_resolution_clock::now();
+
     ifstream inputFile(argv[1]);
 
     if (!inputFile) 
@@ -80,4 +82,6 @@ int main(int, char *argv[])
     }
 
     solve(digits, ops);
+    auto end = chrono::high_resolution_clock::now();
+    cout << "time: " << chrono::duration_cast<chrono::microseconds>(end-start).count() << "μs" << endl;
 }
