@@ -11,7 +11,6 @@ int solve(u16 lights, const vector<u16>& buttons) {
     q.push(start);
 
     while (!q.empty()) {
-        if (dp.count(lights)) return dp[lights];
         u16 state = q.front();
         q.pop();
 
@@ -56,7 +55,7 @@ int main(int, char *argv[])
                 lights = 0x0;
                 for (size_t i = 0; i < content.size() && i < 16; ++i) {
                     if (content[i] == '#')
-                        lights |= (1 << i);
+                        lights |= (1u << i);
                 }
             }
 
@@ -71,10 +70,15 @@ int main(int, char *argv[])
 
                 while (ps >> idx) {
                     if (idx >= 0 && idx < 16)
-                        button |= (1 << idx);
+                        button |= (1u << idx);
                     ps >> comma;
                 }
                 buttons.push_back(button);
+            }
+
+            else if (c == '{') {
+                string junk;
+                getline(ss, junk, '}');
             }
         }
         sum += solve(lights,buttons);
