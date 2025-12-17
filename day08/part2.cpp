@@ -4,35 +4,35 @@ using namespace std;
 typedef unsigned long long ull;
 
 class DSU {
-public:
-    vector<int> parent;
-    vector<int> size;
-    
-    DSU(int n) : parent(n), size(n, 1) {
-        iota(parent.begin(), parent.end(), 0);
-    }
-    
-    int find(int x) {
-        if (parent[x] != x) {
-            parent[x] = find(parent[x]); 
-        }
-        return parent[x];
-    }
-    
-    bool unite(int x, int y) {
-        x = find(x);
-        y = find(y);
-        if (x == y) return false; 
+    public:
+        vector<int> parent;
+        vector<int> size;
         
-        if (size[x] < size[y]) swap(x, y);
-        parent[y] = x;
-        size[x] += size[y];
-        return true;
-    }
-    
-    int getSize(int x) {
-        return size[find(x)];
-    }
+        DSU(int n) : parent(n), size(n, 1) {
+            iota(parent.begin(), parent.end(), 0);
+        }
+        
+        int find(int x) {
+            if (parent[x] != x) {
+                parent[x] = find(parent[x]); 
+            }
+            return parent[x];
+        }
+        
+        bool unite(int x, int y) {
+            x = find(x);
+            y = find(y);
+            if (x == y) return false; 
+            
+            if (size[x] < size[y]) swap(x, y);
+            parent[y] = x;
+            size[x] += size[y];
+            return true;
+        }
+        
+        int getSize(int x) {
+            return size[find(x)];
+        }
 };
 
 void solve(const vector<tuple<int,int,int>>& boxes) {
@@ -52,26 +52,23 @@ void solve(const vector<tuple<int,int,int>>& boxes) {
     
     sort(edges.begin(), edges.end());
     
-    int pairs_processed = 0;
+    int num_components = n; 
+    int connection_index = 0;
+    
     for (const auto& [dist, i, j] : edges) {
-        dsu.unite(i, j); 
-        pairs_processed++;
-        if (pairs_processed == 1000) break; 
+        if (dsu.unite(i, j)) {
+            num_components--; 
+            connection_index++;
+            
+            if (num_components == 1) {
+                const auto [x1, y1, z1] = boxes[i];
+                const auto [x2, y2, z2] = boxes[j];
+                
+                cout << (ull)x1 * x2 << endl;
+                break;
+            }
+        }
     }
-    
-    map<int, int> circuit_sizes;
-    for (int i = 0; i < n; ++i) {
-        int root = dsu.find(i);
-        circuit_sizes[root] = dsu.getSize(root);
-    }
-    
-    vector<int> sizes;
-    for (const auto& [root, sz] : circuit_sizes) {
-        sizes.push_back(sz);
-    }
-    sort(sizes.rbegin(), sizes.rend());
-    
-    cout << (ull)sizes[0] * sizes[1] * sizes[2] << endl;
 }
 
 int main(int, char *argv[]) 
